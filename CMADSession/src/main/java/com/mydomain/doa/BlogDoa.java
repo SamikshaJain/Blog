@@ -41,7 +41,6 @@ public class BlogDoa {
 	
 	
 	public void createBlog(Blog blog){
-		//System.out.println("Creating user: "+u.getName()+" Age: "+u.getAge());
 		Session ses = HibernateUtil.currentSession();
 		try {
 			Transaction tx = ses.beginTransaction();

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -45,7 +46,7 @@ public class BlogService {
 		
 	}
 	
-	
+	/*
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	//public void createUser(@FormParam("name") String name,@FormParam("age") Integer age,@FormParam("emailId") String emailId){
@@ -53,8 +54,22 @@ public class BlogService {
 	
 		blogDoa.createBlog(blog);
 		
-	}
+	}*/
 	
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	//public void createUser(@FormParam("name") String name,@FormParam("age") Integer age,@FormParam("emailId") String emailId){
+	//public void createBlog(@FormParam("title") String title,@FormParam("body") String body){
+	public void createBlog(Blog blog) {
+		System.out.println("blog");
+		blog.setPost_date();
+		/* Blog blog = new Blog();
+		blog.setBody(body);
+		blog.setTitle(title);
+		blog.setUser_id(1);*/
+		blogDoa.createBlog(blog);
+		
+	}
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
 	//@Consumes(MediaType.APPLICATION_FORM_URLENCODED)

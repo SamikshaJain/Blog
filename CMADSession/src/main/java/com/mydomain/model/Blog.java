@@ -72,10 +72,16 @@ public class Blog {
 		return post_date;
 	}
 
-	public void setPost_date(Timestamp post_date) {
-		this.post_date = post_date;
+	public void setPost_date() {
+		//this.post_date = post_date;
+		 java.util.Date date= new java.util.Date();
+		 this.post_date = (new Timestamp(date.getTime()));
 	}
 
+	public void setPost_date(Timestamp post_date) {
+		
+		 this.post_date = post_date;
+	}
 	@Override
 	public String toString() {
 		return "New Blog [id=" + id + ", user_id=" + user_id + ", title=" + title + ", body=" + body + ", tag_id=" + tag_id

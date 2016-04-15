@@ -7,24 +7,16 @@
       <script type="text/javascript" src="scripts/jquery-2.2.3.js"></script>
       <script>
       $(document).ready(function() {
-
+        alert("I am here finally");
         $("form").submit(function (e) {
           var titleTxt = document.getElementById("posttitle").value;
                var bodyTxt = document.getElementById("postdesc").value;
-               var data = JSON.stringify({user_id: 1, title: titleTxt, body: bodyTxt});
-               alert( data);
-
-               $.ajax({
-                 type : "POST",
-                 url : 'cmad/blogs',
-                 dataType :"json",
-                 contentType: "application/json",
-                 data : data,
-                 success : function(result) {
-                   alert(result.success); // result is an object which is created from the returned JSON
-    },
-
+          $.post("cmad/blogs", { title: titleTxt, body : bodyTxt},
+          function(returnedData){
+         console.log(returnedData);
+         alert("Done");
 });
+        alert("I am Inside");
       });
       });
       </script>
@@ -37,8 +29,8 @@
 
         <div id="right"></div>
         <div id="center">
-  <a id="login" href="login.html"> login </a>
-  <a id="signup" href="signup.html"> sign up </a>
+  <a id="login" href="http://www.google.com"> login </a>
+  <a id="signup" href="http://www.gmail.com"> sign up </a>
   <input name="q" type="text" placeholder="" value="Search Q&A" tabindex="1" autocomplete="off" maxlength="240">
 </div>
       </div>
@@ -56,13 +48,13 @@
           <label>Title</label>
         </div>
     <div class="form-group">
-          <input type="text" id="posttitle" name="title" required="required"/>
+          <input type="text" id="posttitle" name="titlePost" required="required"/>
         </div>
         <div class="form-group">
           <label>Details</label>
         </div>
         <div class="form-group">
-          <textarea cols=55 rows=10 id="postdesc" name="body" required="required"></textarea> <br />
+          <textarea cols=55 rows=10 id="postdesc" name="postdesc" required="required"></textarea> <br />
         </div>
         <div class="form-group">
           <label class="form-remember">

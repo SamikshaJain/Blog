@@ -4,8 +4,21 @@
     <title>Login Form - Modal</title>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style1.css">
-  </head>
-
+      <script type="text/javascript" src="scripts/jquery-2.2.3.js"></script>
+<header> Authorization: Basic</header>
+  <script>
+  $(document).ready(function() {
+    alert ("I am working");
+    $("form").submit(function (e) {
+      alert ("call get");
+    $.get("cmad/users", function(data){
+      alert ("I am authorized");
+      window.location="viewallblogs.html";
+    });
+    });
+  });
+  </script>
+    </head>
   <body>
     <div id="header">
 
@@ -28,8 +41,8 @@
     <div class="form-content">
       <form>
         <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" required="required"/>
+          <label for="username">Username</label>
+          <input type="username" id="username" name="username" required="required"/>
         </div>
         <div class="form-group">
           <label for="password">Password</label>

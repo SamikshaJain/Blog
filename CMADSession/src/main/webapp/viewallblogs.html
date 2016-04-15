@@ -1,0 +1,42 @@
+<html>
+<head>
+    <meta charset="utf-8">
+<script type="text/javascript" src="scripts/jquery-2.2.3.js"></script>
+  <link rel="stylesheet" href="css/style2.css">
+<script>
+$(document).ready(function() {
+	$.get("cmad/blogs", function(data){
+		for(index in data){
+
+var link = $("<a/>",{"href":"test.html",
+        "text":data[index].title,"class":"blogtitle"
+});
+var body = $("<div/>",{"text":data[index].body,"class":"blogbody"
+});
+var post_date = $("<div/>",{"text":data[index].post_date,"class":"body_date"
+});
+var breakline = $('<hr />');
+			$("#blogSection").append(link).append(title).append(body).append(post_date).append(breakline);
+
+		}
+	});
+});
+</script>
+  </head>
+<body>
+<div id="header">
+
+          <div> <h1 id="title">CMAD Projects</h1></div>
+
+        <div id="right"></div>
+        <div id="center">
+  <a id="login" href="login.html"> login </a>
+  <a id="signup" href="signup.jsp"> sign up </a>
+  <input name="q" type="text" placeholder="" value="Search Q&A" tabindex="1" autocomplete="off" maxlength="240">
+</div>
+      </div>
+  <h2> My Blogs List</h2>
+<div id="blogSection">
+</div>
+</body>
+</html>

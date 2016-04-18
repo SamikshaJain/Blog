@@ -4,11 +4,31 @@ package com.mydomain.model;
 import java.sql.Timestamp;
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+ 
+import org.hibernate.annotations.Cascade;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+@Entity
+@Table(name = "blogPostTable")
 public class Blog {
 
+	
+	private Users user_id;
+	 
+	
 	private Integer id;
-	private Integer user_id;
+	//private Integer user_id;
 	private String title="";
 	private String body="";
 	private String tag_id="";
@@ -18,14 +38,34 @@ public class Blog {
 		
 	}
 	
-	public Blog(Integer id, Integer user_id, String title, String body, String tag_id, Timestamp post_date) {
-		super();
-		this.id = id;
-		this.user_id = user_id;
+	public Blog( String title, String body) {
+	
+		//this.id = id;
+		//this.user_id = user_id;
 		this.title = title;
 		this.body = body;
 		this.tag_id = tag_id;
 		this.post_date = post_date;
+	}
+
+	public Blog(Integer id,  String title, String body, String tag_id, Timestamp post_date,Users user) {
+		super();
+		this.id = id;
+		this.user_id = user;
+		this.title = title;
+		this.body = body;
+		this.tag_id = tag_id;
+		this.post_date = post_date;
+	}
+	
+	@JsonIgnore 
+	public Users getUser_id() {
+		return user_id;
+	}
+
+	//@JsonIgnore 
+	public void setUser_id(Users user_id) {
+		this.user_id = user_id;
 	}
 
 	public Integer getId() {
@@ -36,13 +76,13 @@ public class Blog {
 		this.id = id;
 	}
 
-	public Integer getUser_id() {
+	/*public Integer getUser_id() {
 		return user_id;
 	}
 
 	public void setUser_id(Integer user_id) {
 		this.user_id = user_id;
-	}
+	}*/
 
 	public String getTitle() {
 		return title;

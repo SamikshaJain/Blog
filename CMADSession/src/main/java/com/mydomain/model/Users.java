@@ -1,6 +1,10 @@
 package com.mydomain.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class Users {
 
@@ -11,12 +15,21 @@ public class Users {
 	private Date joinDate=new Date();
 	private Integer age;
 	private String state="";
+	//private List<Blog> blogs = new ArrayList<Blog>(0);
+	private Set<Blog> blogs;
+	
 	public Users() {
 		
 	}
 	
+	public Users( String name, String emailId, String password) {
+		this.name = name;
+		this.emailId = emailId;
+		this.password = password;
+	}
+	
 	public Users( String name, String emailId, String password,  Integer age, String state) {
-		super();
+	
 	
 		this.name = name;
 		this.emailId = emailId;
@@ -67,6 +80,15 @@ public class Users {
 	public void setState(String state) {
 		this.state = state;
 	}
+	
+	public void addBlogs (Blog blog) {
+		if(blogs == null) {
+			this.blogs = new HashSet<Blog>();
+		} 
+		blogs.add(blog);
+		blog.setUser_id(this);
+	}
+
 	@Override
 	public String toString() {
 		return "Users [id=" + id + ", name=" + name + ", emailId=" + emailId + ", password=" + password + ", joinDate="

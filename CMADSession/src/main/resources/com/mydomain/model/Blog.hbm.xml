@@ -7,9 +7,9 @@
 			<column name="id" />
 			<generator class="native" />
 		</id>
-		<property name="user_id" type="int">
+		 <property name="user_id" type="int">
 			<column name="user_id"/>
-		</property>
+		</property> 
 		<property name="title" type="string">
 			<column name="title" length="255" />
 		</property>
@@ -22,5 +22,15 @@
 		<property name="tag_id" type="string">
 			<column name="tag_id" length="255" />
 		</property>
+		<many-to-one name="user_id" column="ID" lazy="proxy" insert="false" update="false"
+       class="com.mydomain.model.Users"/>
+
+        <!-- <many-to-one name="user" class="com.mydomain.model.Blog" 
+	  		insert="false"
+	        update="false"
+	        not-null="true">
+            <column name="id" />
+        </many-to-one> -->
+        
 	</class>
 </hibernate-mapping>

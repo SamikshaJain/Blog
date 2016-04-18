@@ -61,12 +61,7 @@ public class BlogService {
 	//public void createUser(@FormParam("name") String name,@FormParam("age") Integer age,@FormParam("emailId") String emailId){
 	//public void createBlog(@FormParam("title") String title,@FormParam("body") String body){
 	public void createBlog(Blog blog) {
-		System.out.println("blog");
 		blog.setPost_date();
-		/* Blog blog = new Blog();
-		blog.setBody(body);
-		blog.setTitle(title);
-		blog.setUser_id(1);*/
 		blogDoa.createBlog(blog);
 		
 	}

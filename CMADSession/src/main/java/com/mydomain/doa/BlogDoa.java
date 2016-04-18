@@ -6,11 +6,13 @@ import java.util.List;
 
 
 import org.hibernate.Criteria;
+import org.hibernate.FetchMode;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
 import com.mydomain.model.Blog;
+import com.mydomain.model.Users;
 import com.mydomain.service.HibernateUtil;
 
 
@@ -33,7 +35,10 @@ public class BlogDoa {
 	public List<Blog> getBlogs() {
 		Session ses = HibernateUtil.currentSession();
 		try {
-			return ses.createCriteria(Blog.class).list();
+			return ses.createQuery("FROM  Blog").list(); 
+			 
+			//return ses.createCriteria(Blog.class).list();
+			
 		} finally {
 			HibernateUtil.closeSession();
 		}

@@ -1,96 +1,113 @@
-<!DOCTYPE html>
 <html>
-  <head>
-    <title>Post Your Questions</title>
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/style3.css">
-      <script type="text/javascript" src="scripts/jquery-2.2.3.js"></script>
-      <script>
-      $(document).ready(function() {
+<head>
+    <meta charset="utf-8">
+<script type="text/javascript" src="scripts/jquery-2.2.3.js"></script>
+  <link rel="stylesheet" href="css/style2.css">
+<script>
+$(document).ready(function() {
+	$.get("cmad/blogs", function(data){
+		for(index in data){
 
-        $("form").submit(function (e) {
-          var titleTxt = document.getElementById("posttitle").value;
-               var bodyTxt = document.getElementById("postdesc").value;
-               var data = JSON.stringify({user_id: 1, title: titleTxt, body: bodyTxt});
-               alert( data);
-
-               $.ajax({
-                 type : "POST",
-                 url : 'cmad/blogs',
-                 dataType :"json",
-                 contentType: "application/json",
-                 data : data,
-                 success : function(result) {
-                   alert(result.success); // result is an object which is created from the returned JSON
-    },
-
+var link = $("<a/>",{"href":"test.html",
+        "text":data[index].title,"class":"blogtitle"
 });
-      });
-      });
-      </script>
+var body = $("<div/>",{"text":data[index].body,"class":"blogbody"
+});
+var  date  = new Date(data[index].post_date),
+    day   = date.getDate(),
+    month = date.getMonth() + 1,
+    yr = date.getFullYear(),
+
+  blogTime= dataFromTimestamp(data[index].post_date)
+
+    blogTime = $('<div />', {id : 'month', text : blogTime, "class":"body_date"});
+
+
+
+/*
+var user = $("<div/>",{"text":data[index].user_id.name,"class":"username"
+ar jsDate = new Date(post_date*1000);
+$('#dates').append(elem1, elem2);
+var post_date = $("<div/>",{"text":new Date(data[index].post_date*1000),"class":"body_date"
+});
+});
+*/
+var breakline = $('<hr />');
+			$("#blogSection").append(link).append(title).append(body).append(blogTime).append(breakline);
+
+		}
+	});
+});
+function dataFromTimestamp(timestamp){
+    var d = new Date(timestamp);
+
+    // Time
+    var h = addZero(d.getHours());              //hours
+    var m = addZero(d.getMinutes());            //minutes
+    var s = addZero(d.getSeconds());            //seconds
+
+    // Date
+    var da = d.getDate();                       //day
+    var mon = d.getMonth() + 1;                 //month
+    var yr = d.getFullYear();                   //year
+    var dw = d.getDay();                        //day in week
+
+    // Readable feilds
+    months = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
+    var monName = months[d.getMonth()];         //month Name
+    var time = h + ":" + m + ":" + s;           //full time show
+    var thisDay = da + "/" + mon + "/" + yr;    //full date show
+    var fullTimeValue = thisDay + " " + h +":" + m + ":" + s;
+    var dateTime = {
+        seconds : s,
+        minutes : m,
+        hours : h,
+        dayInMonth : da,
+        month : mon,
+        year : yr,
+        dayInTheWeek : dw,
+        monthName : monName,
+        fullTime : time,
+        fullDate : thisDay
+    };
+    return fullTimeValue;
+
+    function addZero(i) {
+        if (i < 10) {
+            i = "0" + i;
+        }
+        return i;
+    }
+}
+</script>
   </head>
+<body>
+  <div id="header">
 
-  <body>
-    <div id="header">
+            <div> <h1 id="title">CMAD Projects</h1></div>
 
-          <div> <a id="title"href="http://stackoverflow.com/">CMAD Projects</a></div>
-
-        <div id="right"></div>
-        <div id="center">
-  <a id="login" href="login.html"> login </a>
-  <a id="signup" href="signup.html"> sign up </a>
-  <input name="q" type="text" placeholder="" value="Search Q&A" tabindex="1" autocomplete="off" maxlength="240">
-</div>
-      </div>
-<!-- Form-->
-<div class="box">
-  <div class="left">
-  <div class="form">
-  <div class="form-panel postBlog">
-    <div class="form-header">
-      <h1>Ask Questions</h1>
-    </div>
-    <div class="form-content">
-      <form>
-        <div class="form-group">
-          <label>Title</label>
-        </div>
-    <div class="form-group">
-          <input type="text" id="posttitle" name="title" required="required"/>
-        </div>
-        <div class="form-group">
-          <label>Details</label>
-        </div>
-        <div class="form-group">
-          <textarea cols=55 rows=10 id="postdesc" name="body" required="required"></textarea> <br />
-        </div>
-        <div class="form-group">
-          <label class="form-remember">
-            <input type="checkbox"/>Send me new responses to my posts via email
-        </div>
-        <div class="form-group">
-          <button id="postblog" type="submit">Post Your Question</button>
-        </div>
-      </form>
-    </div>
+          <div id="right"></div>
+          <div id="center">
+    <a id="login" href="login.html"> login </a>
+    <a id="signup" href="signup.jsp"> sign up </a>
+    <input name="q" type="text" placeholder="" value="Search Q&A" tabindex="1" autocomplete="off" maxlength="240">
   </div>
-</div>
-</div>
-</div>
-<div class="right">
-    <div class="formques">
-  <div class="queslabel">
-<h4 >How to Ask</h4>
-<pre> Is your question about programming? <br>
-We prefer questions that can be answered,
-not just discussed.  <br>
-Provide details. Share your research.  <br>
-If your question is about this website,
-<a href="index.html" style="text-decoration: none">ask it on meta instead</a>
-</pre>
-</div>
-</div>
-</div>
-</div>
+        </div>
+
+        <div id="cmadLogo">
+          <div id="logoleft"> <h1 >CMAD Projects</h1></div>
+
+                <div id="logoright"></div>
+                <div id="logocenter">
+                    <button id= "leftB" onclick= window.location.replace("index.jsp") type="submit">Questions</button>
+                    <button id= "centerB" type="submit">Users</button>
+            <button id= "rightB" onclick= window.location.replace("addblog.html") type="submit">Ask Question</button>
+
+          </div>
+        </div>
+
+  <div id="blogSection">
+    <h2> My Blog List</h2>
+  </div>
 </body>
 </html>

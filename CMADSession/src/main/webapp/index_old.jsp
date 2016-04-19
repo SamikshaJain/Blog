@@ -18,6 +18,7 @@ $(document).ready(function() {
 </script>
   </head>
 <body>
+<h1> Test Hook </h1>
 <div id="templates" style="display: none;">
 	<table>
 		<tr><td>username</td><td>email</td><td>age</td></tr>
